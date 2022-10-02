@@ -6,6 +6,10 @@ import time # to create Unix timestamps for DynamoDB TTL
 import multiprocessing
 import hashlib # To create unique IDs for places where AWS doesn't have them
 from botocore.config import Config
+from botocore.exceptions import ClientError
 
-for bucket in s3.buckets.all():
-    print(bucket.name)
+
+s3 = boto3.client('s3')
+response = s3.list_buckets()['Buckets']
+for bucket in response:
+    print('Bucket name: {}, Created on: {}'.format(bucket['Name'], bucket['CreationDate']))
