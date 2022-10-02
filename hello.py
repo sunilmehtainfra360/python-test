@@ -7,5 +7,5 @@ import multiprocessing
 import hashlib # To create unique IDs for places where AWS doesn't have them
 from botocore.config import Config
 
-for bucket in s3_resource.buckets.all():
-        print(bucket.name)
+for bucket in s3.buckets.all():
+    print(bucket.name)
